@@ -3,7 +3,9 @@ class FizzBuzz(object):
     self.number = number
 
   def check(self):
-    if self.number % 3 == 0:
+    if self.number % 15 == 0:
+      return "Fizzbuzz"
+    elif self.number % 3 == 0:
       return "Fizz"
     elif self.number % 5 ==0:
       return "Buzz"
