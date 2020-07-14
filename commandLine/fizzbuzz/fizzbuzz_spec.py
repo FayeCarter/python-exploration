@@ -14,3 +14,8 @@ def test_returns_fizzbuzz():
   from fizzbuzz import FizzBuzz
   fizzbuzz = FizzBuzz(15)
   assert fizzbuzz.check() == "Fizzbuzz"
+
+def test_returns_number():
+  from fizzbuzz import FizzBuzz
+  fizzbuzz = FizzBuzz(1)
+  assert fizzbuzz.check() == 1
