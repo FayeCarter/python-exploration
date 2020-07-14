@@ -1,6 +1,9 @@
 class FizzBuzz(object):
-  def __init__(self, text):
-    self.text = text
+  def __init__(self, number):
+    self.number = number
 
   def check(self):
-    return "Fizz"
+    if self.number % 3 == 0:
+      return "Fizz"
+    elif self.number % 5 ==0:
+      return "Buzz"
