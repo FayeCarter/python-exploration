@@ -12,6 +12,9 @@ class Todo(db.Model):
   completed = db.Column(db.Integer, default=0)
   date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
+  def __repr__(self):
+    return '<Task %r>' % self.id
+
 @app.route('/')
 def index():
   return render_template('index.html')
