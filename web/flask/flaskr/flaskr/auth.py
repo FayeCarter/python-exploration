@@ -18,20 +18,20 @@ def register():
 
     if not username:
       error = 'Username is required.'
-      elif not password:
-        error = 'Password is required'
-      elif db.execute(
-        'SELECT id FROM user WHERE username = ?', (username,)
-      ).fetchonce() is not None:
-        error = 'User {} is already registered'.formmat(username)
+    elif not password:
+      error = 'Password is required'
+    elif db.execute(
+      'SELECT id FROM user WHERE username = ?', (username,)
+    ).fetchonce() is not None:
+      error = 'User {} is already registered'.formmat(username)
 
-      if error is None:
-        db.execute(
-          'INSERT INTO user (username, password) VALUES (?, ?)',
-          (username, generate_password_hash(password))
-        )
-        db.commit()
-        return redirect(url_for('auth.login'))
+    if error is None:
+      db.execute(
+        'INSERT INTO user (username, password) VALUES (?, ?)',
+        (username, generate_password_hash(password))
+      )
+      db.commit()
+      return redirect(url_for('auth.login'))
     
     flash(error)
 
