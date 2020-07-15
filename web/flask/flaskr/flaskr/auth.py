@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-  Blueprint, flash, g, redirect, render_templates, request, session, url_for
+  Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db
@@ -22,8 +22,8 @@ def register():
       error = 'Password is required'
     elif db.execute(
       'SELECT id FROM user WHERE username = ?', (username,)
-    ).fetchonce() is not None:
-      error = 'User {} is already registered'.formmat(username)
+    ).fetchone() is not None:
+      error = 'User {} is already registered'.format(username)
 
     if error is None:
       db.execute(
@@ -46,7 +46,7 @@ def login():
     error = None
     user = db.execute(
       'SELECT * FROM user WHERE username = ?', (username,)
-    ).fetchonce()
+    ).fetchone()
 
     if user is None:
       error = 'Incorrect username.'
@@ -60,7 +60,7 @@ def login():
     
     flash(error)
   
-  return render_templates('auth/login.html')
+  return render_template('auth/login.html')
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -79,7 +79,7 @@ def logout():
   return redirect(url_for('index'))
 
 def login_required(view):
-  @functools.wraps(view):
+  @functools.wraps(view)
   def wrapped_view(**kwards):
     if g.user is None:
       return redirect(url_for('auth.login'))
