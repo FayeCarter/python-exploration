@@ -9,9 +9,9 @@ def hello_world():
 
   if request.method == "POST":
     city = request.form['city']
-    city = request.form['country']
-    api_key = "e7b8d42f2fca6e9f0e129a23c6368d0e"
-    weather_url = requests.get(f'###')
+    country = request.form['country']
+    api_key = "###"
+    weather_url = requests.get(f'http://api.openweathermap.org/data/2.5/weather?appid={api_key}&q={city},{country}')
 
     weather_data = weather_url.json()
 
@@ -19,6 +19,6 @@ def hello_world():
     humidity = weather_data['main']['humidity']
     wind_speed = weather_data['wind']['speed']
     
-    return render_template("results.html", temp=temp, humidity=humidity, wind_speed=wid_speed, city="city")
+    return render_template("result.html", temp=temp, humidity=humidity, wind_speed=wind_speed, city="city")
   
   return render_template("index.html")
