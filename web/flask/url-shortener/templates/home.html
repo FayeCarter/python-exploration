@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>file Shortener</title>
-</head>
-<body>
-  <h1>file Shortener</h1>
-  {% for message in get_flashed_messages() %}
-    <h2>{{ message }}</h2>
-  {% endfor %}
+{% extends 'base.html' %}
+{% block main %}
+  <h1>URL Shortener</h1>
+
   <form action="your-url" method="post">
     <label for="url">Website URL</label>
     <input type="url" name="url" value="" required>
@@ -39,5 +31,4 @@
     {% endfor %}
   </ul>
   {% endif %}
-</body>
-</html>
+{% endblock %}
